@@ -1,12 +1,12 @@
 Summary:	Cairo/GTK+3 Canvas
 Summary(pl.UTF-8):	Płótno Cairo/GTK+3
-Name:		goocanvas2
-Version:	2.0.4
+Name:		goocanvas3
+Version:	3.0.0
 Release:	1
 License:	LGPL v2
 Group:		X11/Libraries
-Source0:	https://download.gnome.org/sources/goocanvas/2.0/goocanvas-%{version}.tar.xz
-# Source0-md5:	a603f9459d29348b88ba3592bca03274
+Source0:	https://download.gnome.org/sources/goocanvas/3.0/goocanvas-%{version}.tar.xz
+# Source0-md5:	a0aafafa7107527c0c730ed967d4f653
 URL:		https://wiki.gnome.org/Projects/GooCanvas
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.7
@@ -98,17 +98,18 @@ Example programs using goocanvas library.
 Przykładowe programy używające biblioteki goocanvas.
 
 %package -n python-%{name}
-Summary:	Python binding for GooCanvas 2.x library
-Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GooCanvas 2.x
+Summary:	Python binding for GooCanvas 3.x library
+Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GooCanvas 3.x
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-pygobject3 >= 3.0
+Obsoletes:	python-goocanvas2 < 3.0
 
 %description -n python-%{name}
-Python binding for GooCanvas 2.x library.
+Python binding for GooCanvas 3.x library.
 
 %description -n python-%{name} -l pl.UTF-8
-Wiązania Pythona do biblioteki GooCanvas 2.x.
+Wiązania Pythona do biblioteki GooCanvas 3.x.
 
 %prep
 %setup -q -n goocanvas-%{version}
@@ -135,7 +136,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # prepare and install examples
 %{__make} clean -C demo
-cp demo/*.c demo/*.h demo/*.png $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -p demo/*.c demo/*.h demo/*.png $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # obsoleted by pkgconfig support
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
@@ -152,24 +153,24 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libgoocanvas-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgoocanvas-2.0.so.9
-%{_libdir}/girepository-1.0/GooCanvas-2.0.typelib
+%attr(755,root,root) %{_libdir}/libgoocanvas-3.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgoocanvas-3.0.so.9
+%{_libdir}/girepository-1.0/GooCanvas-3.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgoocanvas-2.0.so
-%{_includedir}/goocanvas-2.0
-%{_datadir}/gir-1.0/GooCanvas-2.0.gir
-%{_pkgconfigdir}/goocanvas-2.0.pc
+%attr(755,root,root) %{_libdir}/libgoocanvas-3.0.so
+%{_includedir}/goocanvas-3.0
+%{_datadir}/gir-1.0/GooCanvas-3.0.gir
+%{_pkgconfigdir}/goocanvas-3.0.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgoocanvas-2.0.a
+%{_libdir}/libgoocanvas-3.0.a
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/goocanvas2
+%{_gtkdocdir}/goocanvas3
 
 %files examples
 %defattr(644,root,root,755)
